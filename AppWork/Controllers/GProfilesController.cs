@@ -5,24 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AppWork.Models;
-
 namespace AppWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class GProfilesController : ControllerBase
     {
         private IUserDataProvider userDataProvider;
-
-        public UserController(IUserDataProvider userDataProvider)
+        public GProfilesController(IUserDataProvider userDataProvider)
         {
             this.userDataProvider = userDataProvider;
         }
-        [HttpGet]
-        public  List<string> get()
+
+        public async Task<IEnumerable<GithubProfile>> Get()
         {
-           var s= userDataProvider.GetCompanies();
-            return s;
+            return await userDataProvider.GetGithubProfiles();
         }
     }
 }

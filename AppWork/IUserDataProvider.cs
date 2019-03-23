@@ -8,12 +8,12 @@ namespace AppWork
 {
    public interface IUserDataProvider
     {
-        Task<IEnumerable<GithubProfile>> GetGithubProfiles(GithubProfile githubProfile);
+        Task<IEnumerable<GithubProfile>> GetGithubProfiles();
         Task<IEnumerable<Job>> GetJobs( Job job);
         Task<IEnumerable<LinkedinProfile>> GetLinkedinProfiles(LinkedinProfile linkedinProfile);
         Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills(LinkedinSkill linkedinSkill);
         Task<IEnumerable<StaffSkill>> GetStaffSkills(StaffSkill staffSkill);
-        List<string> GetCompanies();
+        Task<List<Company>> GetCompanies();
         
     }
 }
