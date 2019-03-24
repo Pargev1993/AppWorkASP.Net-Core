@@ -10,17 +10,18 @@ namespace AppWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LSkillesController : ControllerBase
+    public class StaffSkillController : ControllerBase
     {
         private IUserDataProvider userDataProvider;
-        public LSkillesController(IUserDataProvider userDataProvider)
+        public StaffSkillController(IUserDataProvider userDataProvider)
         {
             this.userDataProvider = userDataProvider;
         }
         [HttpGet]
-        public async Task<IEnumerable<LinkedinSkill>> Get()
+        public async Task<IEnumerable<StaffSkill>> Get()
         {
-            return await userDataProvider.GetLinkedinSkills();
+            return await userDataProvider.GetStaffSkills();
         }
+
     }
 }
