@@ -20,10 +20,11 @@ namespace AppWork.Controllers
             this.userDataProvider = userDataProvider;
         }
         [HttpGet]
-        public  Task< List<Company>> Get()
+        public async Task< List<Company>> Get()
         {
-           var s= userDataProvider.GetCompanies();
-            return s;
+          return await userDataProvider.GetCompanies();
         }
+       
+       
     }
 }

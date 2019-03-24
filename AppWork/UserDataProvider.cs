@@ -44,9 +44,8 @@ namespace AppWork
                 }
                 return companies;
             }
-
-
         }
+       
 
         public async Task<IEnumerable<GithubProfile>> GetGithubProfiles()
         {
@@ -153,7 +152,7 @@ namespace AppWork
                             Name = reader["Name"] as string
                         };
                         linkedinSkills.Add(linkedinSkill);
-                      
+
                     }
                 }
                 return linkedinSkills;
