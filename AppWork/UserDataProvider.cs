@@ -27,13 +27,15 @@ namespace AppWork
                 {
                     while (reader.Read())
                     {
-                        company = new Company();
-                        company.Id = (int)reader["id"];
-                        company.Name = reader["Name"] as string;
-                        company.Image = reader["image"] as string;
-                        company.Linkedin = reader["Linkedin"] as string;
-                        company.Phone = reader["Phone"] as string;
-                        company.About = reader["About"] as string;
+                        company = new Company
+                        {
+                            Id = (int)reader["id"],
+                            Name = reader["Name"] as string,
+                            Image = reader["image"] as string,
+                            Linkedin = reader["Linkedin"] as string,
+                            Phone = reader["Phone"] as string,
+                            About = reader["About"] as string
+                        };
 
                         companies.Add(company);
 
@@ -59,14 +61,16 @@ namespace AppWork
                 {
                     foreach (var item in Reader)
                     {
-                        githubProfile = new GithubProfile();
-                        githubProfile.Id = (int)Reader["id"];
-                        githubProfile.UserName = Reader["UserName"] as string;
-                        githubProfile.Company = Reader["Company"] as string;
-                        githubProfile.Name = Reader["Name"] as string;
-                        githubProfile.Bio = Reader["Bio"] as string;
-                        githubProfile.Location = Reader["Location"] as string;
-                        githubProfile.Email = Reader["Email"] as string;
+                        githubProfile = new GithubProfile
+                        {
+                            Id = (int)Reader["id"],
+                            UserName = Reader["UserName"] as string,
+                            Company = Reader["Company"] as string,
+                            Name = Reader["Name"] as string,
+                            Bio = Reader["Bio"] as string,
+                            Location = Reader["Location"] as string,
+                            Email = Reader["Email"] as string
+                        };
                         githubProfiles.Add(githubProfile);
                     }
                 }
@@ -87,12 +91,14 @@ namespace AppWork
                 {
                     foreach (var item in reader)
                     {
-                        job = new Job();
-                        job.Id = (int)reader["id"];
-                        job.Title = reader["Title"] as string;
-                        job.Email = reader["Email"] as string;
-                        job.Category = reader["Category"] as string;
-                        job.Description = reader["Description"] as string;
+                        job = new Job
+                        {
+                            Id = (int)reader["id"],
+                            Title = reader["Title"] as string,
+                            Email = reader["Email"] as string,
+                            Category = reader["Category"] as string,
+                            Description = reader["Description"] as string
+                        };
                         jobs.Add(job);
                     }
                 }
@@ -113,12 +119,14 @@ namespace AppWork
                 {
                     while (reader.Read())
                     {
-                        linkedinProfile = new LinkedinProfile();
-                        linkedinProfile.Id = (int)reader["id"];
-                        linkedinProfile.Username = reader["UserName"] as string;
-                        linkedinProfile.FullName = reader["FullName"] as string;
-                        linkedinProfile.Specialty = reader["Specialty"] as string;
-                        linkedinProfile.Location = reader["Location"] as string;
+                        linkedinProfile = new LinkedinProfile
+                        {
+                            Id = (int)reader["id"],
+                            Username = reader["UserName"] as string,
+                            FullName = reader["FullName"] as string,
+                            Specialty = reader["Specialty"] as string,
+                            Location = reader["Location"] as string
+                        };
                         linkedinProfiles.Add(linkedinProfile);
                     }
                 }
@@ -139,9 +147,11 @@ namespace AppWork
                 {
                     while (reader.Read())
                     {
-                        linkedinSkill = new LinkedinSkill();
-                        linkedinSkill.Id = (int)reader["id"];
-                        linkedinSkill.Name = reader["Name"] as string;
+                        linkedinSkill = new LinkedinSkill
+                        {
+                            Id = (int)reader["id"],
+                            Name = reader["Name"] as string
+                        };
                         linkedinSkills.Add(linkedinSkill);
                       
                     }
@@ -164,10 +174,12 @@ namespace AppWork
                 {
                     while (reader.Read())
                     {
-                        staffSkill = new StaffSkill();
-                        staffSkill.Id = (int)reader["id"];
-                        staffSkill.Name = reader["Name"] as string;
-                        staffSkill.Type = reader["Type"] as string;
+                        staffSkill = new StaffSkill
+                        {
+                            Id = (int)reader["id"],
+                            Name = reader["Name"] as string,
+                            Type = reader["Type"] as string
+                        };
                         staffSkills.Add(staffSkill);
                     }
                 }

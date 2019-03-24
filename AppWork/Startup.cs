@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.SqlServer;
+using NLog.Web;
+using NLog.Config;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace AppWork
 {
@@ -22,11 +25,7 @@ namespace AppWork
         }
 
         public IConfiguration Configuration { get; }
-        private IUserDataProvider userDataProvider;
-        public Startup(IUserDataProvider userData)
-        {
-            userDataProvider = userData;
-        }
+       
       
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -34,10 +33,11 @@ namespace AppWork
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IUserDataProvider, UserDataProvider>();
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory logger)
         {
             if (env.IsDevelopment())
             {
@@ -45,8 +45,10 @@ namespace AppWork
             }
             else
             {
-                app.UseHsts();
+                app.UseHsts(); 
             }
+            logger.AddNLog();
+            env.ConfigureNLog("nlog.config");
 
             app.UseHttpsRedirection();
             app.UseMvc();

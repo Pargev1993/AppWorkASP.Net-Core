@@ -20,7 +20,7 @@ namespace AppWork.Controllers
             this.userDataProvider = userDataProvider;
         }
         [HttpGet]
-        public  Task< List<Company>> get()
+        public  Task< List<Company>> Get()
         {
            var s= userDataProvider.GetCompanies();
             return s;
