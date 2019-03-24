@@ -35,15 +35,15 @@ namespace AppWork
                         company.Phone = reader["Phone"] as string;
                         company.About = reader["About"] as string;
 
-                       companies.Add(company);
-                        
+                        companies.Add(company);
+
                     }
                     reader.Close();
                 }
                 return companies;
             }
 
-              
+
         }
 
         public async Task<IEnumerable<GithubProfile>> GetGithubProfiles()
@@ -51,11 +51,11 @@ namespace AppWork
             GithubProfile githubProfile = null;
             List<GithubProfile> githubProfiles = new List<GithubProfile>();
             string sqlcomandstring = "select * from Monitoring.dbo.GithubProfile";
-            using (SqlConnection sqlconnection=new SqlConnection (connectionString))
+            using (SqlConnection sqlconnection = new SqlConnection(connectionString))
             {
                 await sqlconnection.OpenAsync();
                 SqlCommand sqlCommand = new SqlCommand(sqlcomandstring, sqlconnection);
-                using (SqlDataReader Reader=sqlCommand.ExecuteReader())
+                using (SqlDataReader Reader = sqlCommand.ExecuteReader())
                 {
                     foreach (var item in Reader)
                     {
@@ -74,24 +74,106 @@ namespace AppWork
             }
         }
 
-        public Task<IEnumerable<Job>> GetJobs(Job job)
+        public async Task<IEnumerable<Job>> GetJobs()
         {
-            throw new NotImplementedException();
+            string ComandText = "select * from Monitoring.dbo.Job";
+            Job job = null;
+            List<Job> jobs = new List<Job>();
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(ComandText, sqlConnection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    foreach (var item in reader)
+                    {
+                        job = new Job();
+                        job.Id = (int)reader["id"];
+                        job.Title = reader["Title"] as string;
+                        job.Email = reader["Email"] as string;
+                        job.Category = reader["Category"] as string;
+                        job.Description = reader["Description"] as string;
+                        jobs.Add(job);
+                    }
+                }
+                return jobs;
+            }
         }
 
-        public Task<IEnumerable<LinkedinProfile>> GetLinkedinProfiles(LinkedinProfile linkedinProfile)
+        public async Task<IEnumerable<LinkedinProfile>> GetLinkedinProfiles()
         {
-            throw new NotImplementedException();
+            LinkedinProfile linkedinProfile = null;
+            List<LinkedinProfile> linkedinProfiles = new List<LinkedinProfile>();
+            string comandtext = "select * from Monitoring.dbo.LinkedinProfile";
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(comandtext, sqlConnection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        linkedinProfile = new LinkedinProfile();
+                        linkedinProfile.Id = (int)reader["id"];
+                        linkedinProfile.Username = reader["UserName"] as string;
+                        linkedinProfile.FullName = reader["FullName"] as string;
+                        linkedinProfile.Specialty = reader["Specialty"] as string;
+                        linkedinProfile.Location = reader["Location"] as string;
+                        linkedinProfiles.Add(linkedinProfile);
+                    }
+                }
+                return linkedinProfiles;
+            }
         }
 
-        public Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills(LinkedinSkill linkedinSkill)
+        public async Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills()
         {
-            throw new NotImplementedException();
+            LinkedinSkill linkedinSkill = null;
+            List<LinkedinSkill> linkedinSkills = new List<LinkedinSkill>();
+            string comandtext = "select * from Monitoring.dbo.LinkedinSkill";
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(comandtext, sqlConnection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        linkedinSkill = new LinkedinSkill();
+                        linkedinSkill.Id = (int)reader["id"];
+                        linkedinSkill.Name = reader["Name"] as string;
+                        linkedinSkills.Add(linkedinSkill);
+                      
+                    }
+                }
+                return linkedinSkills;
+            }
+
         }
 
-        public Task<IEnumerable<StaffSkill>> GetStaffSkills(StaffSkill staffSkill)
+        public async Task<IEnumerable<StaffSkill>> GetStaffSkills()
         {
-            throw new NotImplementedException();
+            StaffSkill staffSkill = null;
+            List<StaffSkill> staffSkills = new List<StaffSkill>();
+            string comandtext = "select * from Monitoring.dbo.StaffSkill";
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(comandtext, sqlConnection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        staffSkill = new StaffSkill();
+                        staffSkill.Id = (int)reader["id"];
+                        staffSkill.Name = reader["Name"] as string;
+                        staffSkill.Type = reader["Type"] as string;
+                        staffSkills.Add(staffSkill);
+                    }
+                }
+                return staffSkills;
+            }
+
         }
     }
 }

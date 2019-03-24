@@ -9,10 +9,10 @@ namespace AppWork
    public interface IUserDataProvider
     {
         Task<IEnumerable<GithubProfile>> GetGithubProfiles();
-        Task<IEnumerable<Job>> GetJobs( Job job);
-        Task<IEnumerable<LinkedinProfile>> GetLinkedinProfiles(LinkedinProfile linkedinProfile);
-        Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills(LinkedinSkill linkedinSkill);
-        Task<IEnumerable<StaffSkill>> GetStaffSkills(StaffSkill staffSkill);
+        Task<IEnumerable<Job>> GetJobs( );
+        Task<IEnumerable<LinkedinProfile>> GetLinkedinProfiles();
+        Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills();
+        Task<IEnumerable<StaffSkill>> GetStaffSkills();
         Task<List<Company>> GetCompanies();
         
     }
