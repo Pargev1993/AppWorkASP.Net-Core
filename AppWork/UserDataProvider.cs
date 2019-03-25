@@ -13,7 +13,7 @@ namespace AppWork
     public class UserDataProvider : IUserDataProvider
     {
         private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog = Monitoring; Integrated Security = True;";
-        public async Task<List<Company>> GetCompanies()
+        public async Task<List<Company>> GetCompanies( )
 
         {
             List<Company> companies = new List<Company>();
@@ -45,7 +45,40 @@ namespace AppWork
                 return companies;
             }
         }
-       
+        public async Task< Company> GetCompanie(string text)
+
+        {
+            List<Company> companies = new List<Company>();
+            string sqlcomandstring = "select * from Monitoring.dbo.Company";
+            Company company = null;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(sqlcomandstring, sqlConnection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        company = new Company
+                        {
+                            Id = (int)reader["id"],
+                            Name = reader["Name"] as string,
+                            Image = reader["image"] as string,
+                            Linkedin = reader["Linkedin"] as string,
+                            Phone = reader["Phone"] as string,
+                            About = reader["About"] as string
+                        };
+
+                        companies.Add(company);
+
+                    }
+                    reader.Close();
+                }
+                return companies.Where(com => com.Name == text).FirstOrDefault();
+            }
+        }
+
+
 
         public async Task<IEnumerable<GithubProfile>> GetGithubProfiles()
         {

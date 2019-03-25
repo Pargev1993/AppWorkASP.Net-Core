@@ -22,9 +22,15 @@ namespace AppWork.Controllers
         [HttpGet]
         public async Task< List<Company>> Get()
         {
-          return await userDataProvider.GetCompanies();
+          return await userDataProvider.GetCompanies( );
         }
-       
-       
+        [HttpGet("{Text}")]
+        public Task< Company> GetCompane(string Text)
+        {
+            return userDataProvider.GetCompanie(Text);
+
+        }
+
+
     }
 }

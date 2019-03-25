@@ -14,6 +14,8 @@ namespace AppWork
         Task<IEnumerable<LinkedinSkill>> GetLinkedinSkills();
         Task<IEnumerable<StaffSkill>> GetStaffSkills();
         Task<List<Company>> GetCompanies();
-       
+       Task<Company> GetCompanie(string text);
+
+
     }
 }

@@ -40,7 +40,7 @@ namespace AppWork
                 app.UseHsts(); 
             }
             logger.AddNLog();
-            env.ConfigureNLog("nlog.config");
+            env.ConfigureNLog("Nlog.config");
 
             app.UseHttpsRedirection();
             app.UseMvc();
